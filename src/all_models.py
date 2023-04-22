@@ -247,6 +247,22 @@ def model_xgb(X_train, y_train, X_test, y_test):
     print("XGB AUC:", auc)
 
 
+def SVM_model(X_train, y_train, X_test, y_test):
+    X_train = X_train.reshape(X_train.shape[0], -1)
+    X_test = X_test.reshape(X_test.shape[0], -1)
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+
+    X_test_scaled = scaler.fit_transform(X_test)
+    clf=SVC(kernel='linear', C=1)
+
+    clf.fit(X_train_scaled, y_train)
+    y_pred = clf.predict(X_test_scaled)
+    accuracy = accuracy_score(y_test, y_pred)
+    auc_score = roc_auc_score(y_test, y_pred)
+    # print(y_train, y_pred)
+    print(f"{''} SVM - Accuracy: {accuracy:.4f}, - AUC: {auc_score:.4f} ")
+
 if __name__ == "__main__":
 
     # X_train, y_train, X_test, y_test = data_process(nn=True)
@@ -258,7 +274,7 @@ if __name__ == "__main__":
     # model_dnn(X_train, y_train, X_test, y_test)
     # model_lstm(X_train, y_train, X_test, y_test)
     X_train, y_train, X_test, y_test = data_process(nn=False)
-    model_xgb(X_train, y_train, X_test, y_test)
+    # model_xgb(X_train, y_train, X_test, y_test)
 
-
+    SVM_model(X_train, y_train, X_test, y_test)
 
