@@ -38,7 +38,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 #from keras.models import Sequential
 #from keras.layers import Dense, LSTM
-from keras.optimizers.optimizer_v2.adam import Adam
+# from keras.optimizers.optimizer_v2.adam import Adam
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, LSTM
